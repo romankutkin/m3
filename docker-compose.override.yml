@@ -1,0 +1,10 @@
+version: "3.9"
+
+services:
+    php-fpm:
+        volumes:
+            - ./application:/var/www/application
+            - var:/var/www/application/var
+
+volumes:
+    var: ~
