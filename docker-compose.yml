@@ -5,3 +5,10 @@ services:
         build:
             context: .
             dockerfile: ./docker/build/php-fpm/Dockerfile
+
+    nginx:
+        build:
+            context: .
+            dockerfile: ./docker/build/nginx/Dockerfile
+        depends_on:
+            - php-fpm

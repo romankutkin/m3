@@ -6,5 +6,12 @@ services:
             - ./application:/var/www/application
             - var:/var/www/application/var
 
+    nginx:
+        volumes:
+            - ./application/public:/var/www/application/public:ro
+            - ./docker/etc/nginx/conf.d:/etc/nginx/conf.d:ro
+        ports:
+            - "8001:80"
+
 volumes:
     var: ~
