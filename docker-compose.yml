@@ -1,0 +1,7 @@
+version: "3.9"
+
+services:
+    php-fpm:
+        build:
+            context: .
+            dockerfile: ./docker/build/php-fpm/Dockerfile
