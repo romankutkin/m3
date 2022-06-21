@@ -13,5 +13,9 @@ services:
         ports:
             - "8001:80"
 
+    postgres:
+        ports:
+            - "5432:5432"
+
 volumes:
     var: ~
