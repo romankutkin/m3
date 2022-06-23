@@ -1,5 +1,7 @@
 FROM php:8.1-fpm-alpine
 
+RUN apk add acl
+
 # Install PDO driver for PostgreSQL
 RUN apk add postgresql-dev \
     && docker-php-ext-configure pgsql --with-pgsql=/usr/local/pgsql \
@@ -9,3 +11,9 @@ RUN apk add postgresql-dev \
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 WORKDIR /var/www/application
+
+COPY ./docker/etc/php-fpm/docker-entrypoint.sh /usr/local/bin/docker-entrypoint
+RUN chmod +x /usr/local/bin/docker-entrypoint
+
+ENTRYPOINT ["docker-entrypoint"]
+CMD ["php-fpm"]
