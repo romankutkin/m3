@@ -5,6 +5,8 @@ services:
         volumes:
             - ./application:/var/www/application
             - var:/var/www/application/var
+        environment:
+            PHP_IDE_CONFIG: "serverName=application"
 
     nginx:
         volumes:

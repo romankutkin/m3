@@ -7,6 +7,12 @@ RUN apk add postgresql-dev \
     && docker-php-ext-configure pgsql --with-pgsql=/usr/local/pgsql \
     && docker-php-ext-install pdo_pgsql
 
+# Install Xdebug
+RUN pecl install xdebug \
+    && docker-php-ext-enable xdebug
+
+COPY ./docker/etc/php-fpm/conf.d/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
+
 # Install OPcache
 RUN docker-php-ext-install opcache
 
