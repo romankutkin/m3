@@ -12,7 +12,9 @@ up:
 down:
 	@$(COMPOSE) down --remove-orphans
 
-start: build up
+start:
+	@$(COMPOSE) up --build --detach
+
 restart: down start
 
 logs:
