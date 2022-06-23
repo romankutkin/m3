@@ -7,7 +7,10 @@ RUN apk add postgresql-dev \
     && docker-php-ext-configure pgsql --with-pgsql=/usr/local/pgsql \
     && docker-php-ext-install pdo_pgsql
 
-# Install composer
+# Install OPcache
+RUN docker-php-ext-install opcache
+
+# Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 WORKDIR /var/www/application
