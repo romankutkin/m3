@@ -23,10 +23,10 @@ RUN pecl install apcu \
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-WORKDIR /var/www/application
-
 COPY ./docker/etc/php-fpm/docker-entrypoint.sh /usr/local/bin/docker-entrypoint
 RUN chmod +x /usr/local/bin/docker-entrypoint
+
+WORKDIR /var/www/application
 
 ENTRYPOINT ["docker-entrypoint"]
 CMD ["php-fpm"]
