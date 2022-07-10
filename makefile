@@ -1,24 +1,33 @@
-COMPOSE = docker-compose --env-file ./.env.local
+DOCKER_COMPOSE = docker-compose
+
+# Default dotenv file
+DOCKER_COMPOSE_DOTENV = --env-file ./.env
+
+ifneq ("$(wildcard .env.local)", "")
+	DOCKER_COMPOSE_DOTENV = --env-file ./.env.local
+endif
+
+DOCKER_COMPOSE += $(DOCKER_COMPOSE_DOTENV)
 
 init:
 	@cp -n .env .env.local || echo "File .env.local already exists."
 
 build:
-	@$(COMPOSE) build --pull --no-cache
+	@$(DOCKER_COMPOSE) build --pull --no-cache
 
 up:
-	@$(COMPOSE) up --detach
+	@$(DOCKER_COMPOSE) up --detach
 
 down:
-	@$(COMPOSE) down --remove-orphans
+	@$(DOCKER_COMPOSE) down --remove-orphans
 
 start:
-	@$(COMPOSE) up --build --detach
+	@$(DOCKER_COMPOSE) up --build --detach
 
 restart: down start
 
 logs:
-	@$(COMPOSE) logs --tail=0 --follow
+	@$(DOCKER_COMPOSE) logs --tail=0 --follow
 
 sh:
-	@$(COMPOSE) exec php-fpm sh
+	@$(DOCKER_COMPOSE) exec php-fpm sh
