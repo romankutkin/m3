@@ -1,11 +1,8 @@
-# Default docker-compose
-DOCKER_COMPOSE = docker-compose -f docker-compose.yml
+DOCKER_COMPOSE = docker-compose
 
-# Add docker-compose.{environment}.yml to default docker-compose
-DOCKER_COMPOSE = -f docker-compose.development.yml
-
-# Add docker-compose.override.yml to default docker-composes
-DOCKER_COMPOSE += -f docker-compose.override.yml
+DOCKER_COMPOSE_FILE = -f docker-compose.yml
+DOCKER_COMPOSE_FILE += -f docker-compose.development.yml
+DOCKER_COMPOSE_FILE += -f docker-compose.override.yml
 
 # Default dotenv file
 DOCKER_COMPOSE_DOTENV = --env-file ./.env
@@ -20,16 +17,16 @@ init:
 	@cp -n .env .env.local || echo "File .env.local already exists."
 
 build:
-	@$(DOCKER_COMPOSE) build --pull --no-cache
+	@$(DOCKER_COMPOSE) $(DOCKER_COMPOSE_FILE) build --pull --no-cache
 
 up:
-	@$(DOCKER_COMPOSE) up --detach
+	@$(DOCKER_COMPOSE) $(DOCKER_COMPOSE_FILE) up --detach
 
 down:
 	@$(DOCKER_COMPOSE) down --remove-orphans
 
 start:
-	@$(DOCKER_COMPOSE) up --build --detach
+	@$(DOCKER_COMPOSE) $(DOCKER_COMPOSE_FILE) up --build --detach
 
 restart: down start
 
