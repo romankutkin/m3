@@ -1,4 +1,11 @@
-DOCKER_COMPOSE = docker-compose
+# Default docker-compose
+DOCKER_COMPOSE = docker-compose -f docker-compose.yml
+
+# Add docker-compose.{environment}.yml to default docker-compose
+DOCKER_COMPOSE = -f docker-compose.development.yml
+
+# Add docker-compose.override.yml to default docker-composes
+DOCKER_COMPOSE += -f docker-compose.override.yml
 
 # Default dotenv file
 DOCKER_COMPOSE_DOTENV = --env-file ./.env
@@ -27,7 +34,7 @@ start:
 restart: down start
 
 logs:
-	@$(DOCKER_COMPOSE) logs --tail=0 --follow
+	@$(DOCKER_COMPOSE) logs --tail=all --follow
 
 sh:
 	@$(DOCKER_COMPOSE) exec php-fpm sh

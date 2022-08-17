@@ -4,14 +4,14 @@ services:
     php-fpm:
         build:
             context: .
-            dockerfile: ./docker/build/php-fpm/Dockerfile
+            dockerfile: ./docker/development/php-fpm/build/Dockerfile
         depends_on:
             - postgres
 
     nginx:
         build:
             context: .
-            dockerfile: ./docker/build/nginx/Dockerfile
+            dockerfile: ./docker/development/nginx/build/Dockerfile
         depends_on:
             - php-fpm
 

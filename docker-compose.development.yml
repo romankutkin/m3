@@ -11,13 +11,7 @@ services:
     nginx:
         volumes:
             - ./application/public:/var/www/application/public:ro
-            - ./docker/etc/nginx/conf.d:/etc/nginx/conf.d:ro
-        ports:
-            - "8001:80"
-
-    postgres:
-        ports:
-            - "5432:5432"
+            - ./docker/development/nginx/etc/conf.d:/etc/nginx/conf.d:ro
 
 volumes:
     var: ~
