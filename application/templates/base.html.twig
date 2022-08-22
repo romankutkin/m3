@@ -7,7 +7,9 @@
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {% block body %}
+            <div id="greeting"></div>
+        {% endblock %}
 
         {% block javascripts %}
             <script src="{{ asset('bundles/index.bundle.js') }}"></script>
