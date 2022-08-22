@@ -12,6 +12,7 @@ module.exports = {
                 use: [
                     "style-loader",
                     "css-loader",
+                    "sass-loader",
                 ],
             },
             {
