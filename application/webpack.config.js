@@ -8,6 +8,13 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.s[ac]ss$/i,
+                use: [
+                    "style-loader",
+                    "css-loader",
+                ],
+            },
+            {
                 test: /\.(js|jsx)$/i,
                 exclude: /node_modules/,
                 use: {
