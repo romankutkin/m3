@@ -13,5 +13,9 @@ services:
             - ./application/public:/var/www/application/public:ro
             - ./docker/development/nginx/etc/conf.d:/etc/nginx/conf.d:ro
 
+    node:
+        volumes:
+            - ./application:/var/www/application
+
 volumes:
     var: ~

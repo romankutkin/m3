@@ -24,5 +24,11 @@ services:
         volumes:
             - database:/var/lib/postgresql/data
 
+    node:
+        build:
+            context: .
+            dockerfile: ./docker/development/node/build/Dockerfile
+        tty: true
+
 volumes:
     database: ~
